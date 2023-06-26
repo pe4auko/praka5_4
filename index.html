@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #ffffff;
+            color: #0c0c0c;
+        }
+        input{
+            background-color: #ebebeb;
+        }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label>
+        Від
+        <input type="number" max="0" min="-10" value="-6" id="from_range" />
+      </label>
+      <label>
+        до
+        <input type="number" max="10" min="0" value="6" id="to_range" />
+      </label>
+      <label>
+        кроків
+        <input type="number" min="0.1" value="1"  id="step" />
+      </label>
+      <button id="button">Рахувати</button>
+    </div>
+    <ul id="list">
+
+    </ul>
+    <script>
+      const fromRange = document.querySelector("#from_range");
+      const toRange = document.querySelector("#to_range");
+      const stepInput = document.querySelector("#step");      
+      const list = document.querySelector("#list");
+      const button = document.querySelector("#button");
+
+      button.addEventListener("click",()=>{
+        list.innerHTML = ""
+        for (let x = parseFloat(fromRange.value); x < parseFloat(toRange.value)+(parseFloat(stepInput.value)/2); x+=parseFloat(stepInput.value)) {
+          const li = document.createElement("li");
+          if (x<4) {
+            li.innerText = Math.tan(x) - Math.pow(x,2);
+            
+          }else if(x==4){
+            li.innerText = 35 * Math.PI;
+
+          }else{
+            li.innerText = Math.log(x) + 3;
+          }
+          list.appendChild(li)
+        }
+      })
+    </script>
+  </body>
+</html>
